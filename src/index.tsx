@@ -292,8 +292,8 @@ const ModalizeBase = (
             easing: timing.easing,
             useNativeDriver: USE_NATIVE_DRIVER,
           }),
-    ]).start(() => {
-      if (onOpened) {
+    ]).start(({finished}) => {
+      if (onOpened && finished) {
         onOpened();
       }
 
