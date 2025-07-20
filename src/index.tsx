@@ -97,6 +97,7 @@ const ModalizeBase = (
     keyboardAvoidingOffset,
     panGestureEnabled = true,
     panGestureComponentEnabled = false,
+    isMahmutTabClose = false,
     tapGestureEnabled = true,
     closeOnOverlayTap = true,
     closeSnapPointStraightEnabled = true,
@@ -781,7 +782,7 @@ const ModalizeBase = (
     return (
       <PanGestureHandler
         ref={panGestureChildrenRef}
-        enabled={panGestureEnabled}
+        enabled={panGestureEnabled && isMahmutTabClose}
         simultaneousHandlers={[nativeViewChildrenRef, tapGestureModalizeRef]}
         shouldCancelWhenOutside={false}
         onGestureEvent={handleGestureEvent}
@@ -795,6 +796,7 @@ const ModalizeBase = (
             ref={nativeViewChildrenRef}
             waitFor={tapGestureModalizeRef}
             simultaneousHandlers={panGestureChildrenRef}
+            enabled={panGestureEnabled && isMahmutTabClose}
           >
             {renderContent()}
           </NativeViewGestureHandler>
