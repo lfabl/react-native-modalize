@@ -87,6 +87,7 @@ const ModalizeBase = (
 
     // Options
     handlePosition = 'outside',
+    scrollTreshold = 20,
     disableScrollIfPossible = true,
     avoidKeyboardLikeIOS = Platform.select({
       ios: true,
@@ -456,7 +457,7 @@ const ModalizeBase = (
       translationY < 0;
     const thresholdProps = translationY > threshold && beginScrollYValue === 0;
     const closeThreshold = velocity
-      ? (beginScrollYValue <= 20 && velocityY >= velocity) || thresholdProps
+      ? (beginScrollYValue <= scrollTreshold && velocityY >= velocity) || thresholdProps
       : thresholdProps;
     let enableBouncesValue = true;
 
@@ -795,6 +796,7 @@ const ModalizeBase = (
             ref={nativeViewChildrenRef}
             waitFor={tapGestureModalizeRef}
             simultaneousHandlers={panGestureChildrenRef}
+            enabled={panGestureEnabled}
           >
             {renderContent()}
           </NativeViewGestureHandler>
