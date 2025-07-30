@@ -5,6 +5,8 @@
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
+    "build": "rm -rf ./lib/* && yarn lint && tsc",
+    "prepare": "yarn build",
     "lint": "eslint 'src/**/*.ts?(x)' && prettier --list-different \"**/*.{json,md,js,jsx,ts,tsx}\"",
     "prettier": "prettier --write \"{docs,examples,src}/**/*.{json,md,js,jsx,ts,tsx}\"",
     "postversion": "sh ./post-version.sh",
@@ -57,12 +59,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
   },
   "devDependencies": {
     "@commitlint/cli": "9.1.2",
